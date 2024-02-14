@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Turma {
+public class Turma implements Comparable<Aluno>{
 
     private ArrayList<Aluno> listaAlunos;
     private int ano;
@@ -41,6 +41,12 @@ public class Turma {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    public void listarAlunos(ArrayList<Aluno> listaAlunos) {
+        for (Aluno aluno : listaAlunos) {
+            System.out.println("Aluno: " + aluno.getNome() + " - Idade: " + aluno.getIdade());
+        }
     }
 
 }
