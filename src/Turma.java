@@ -15,6 +15,14 @@ public class Turma {
         this.ano = cal.get(Calendar.YEAR);
     }
 
+    public void adicionarAluno(Aluno aluno) {
+        listaAlunos.add(aluno);
+    }
+
+    public void removerAluno(int indice) {
+        listaAlunos.remove(indice);
+    }
+
     public ArrayList<Aluno> getListaAlunos() {
         return listaAlunos;
     }
@@ -34,6 +42,5 @@ public class Turma {
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
-    
 
 }
