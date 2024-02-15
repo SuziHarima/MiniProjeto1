@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Turma implements Comparable<Aluno>{
+public class Turma{
 
     private ArrayList<Aluno> listaAlunos;
     private int ano;
