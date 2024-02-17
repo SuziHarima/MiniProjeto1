@@ -1,30 +1,43 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Aluno {
-    public String nome;
-    public int idade;
+    private String nome;
+    private int idade;
+    private ArrayList<Curso> listaCursos;
 
+    public String getNome() {
+        return nome;
+    }
 
-    public static void listarCursos(Scanner scanner, ArrayList<Curso> listaCursos){
+    public int getIdade() {
+        return idade;
+    }
+
+    public Aluno(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+        this.listaCursos = new ArrayList<>();
+    }
+
+    public void listarCursos() {
         System.out.println("\n Cursos Matriculados: ");
         for (int i = 0; i < listaCursos.size(); i++) {
-            System.out.println(i + " - " + listaCursos.get(i).nome);
+            System.out.println((i + 1) + " - " + listaCursos.get(i));
         }
     }
 
-    public static void adicionarCursos(Scanner scanner, ArrayList<Curso> listaCursos){
-        System.out.println("Digite curso para adicionar: ");
-        String nomeCurso = scanner.next();
-        Curso curso = new Curso();
-        listaCursos.add(curso);
+    public void adicionarCursos(Curso curso) {
+        if (curso != null)
+            listaCursos.add(curso);
     }
 
-    public static void removerCursos(Scanner scanner, ArrayList<Curso> listaCursos){
-        listarCursos(scanner, listaCursos);
-        System.out.println("Selecione o número do curso para ser removido: ");
-        int indiceCurso = scanner.nextInt();
-        listaCursos.remove(indiceCurso);
+    public void removerCursos(Curso curso) {
+        if (curso != null)
+            listaCursos.remove(curso);
     }
 
+    @Override
+    public String toString() {
+        return "Aluno: " + nome + " - Idade: " + idade + " anos";
+    }
 }
