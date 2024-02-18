@@ -1,3 +1,5 @@
+package entities;
+
 import java.util.ArrayList;
 
 public class Aluno {
@@ -26,12 +28,12 @@ public class Aluno {
         }
     }
 
-    public void adicionarCursos(Curso curso) {
+    public void adicionarCurso(Curso curso) {
         if (curso != null)
             listaCursos.add(curso);
     }
 
-    public void removerCursos(Curso curso) {
+    public void removerCurso(Curso curso) {
         if (curso != null)
             listaCursos.remove(curso);
     }

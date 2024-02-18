@@ -1,9 +1,10 @@
+package entities;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Turma{
-
     private ArrayList<Aluno> listaAlunos;
     private int ano;
     private Curso curso;
@@ -43,10 +44,12 @@ public class Turma{
         this.curso = curso;
     }
 
-    public void listarAlunos(ArrayList<Aluno> listaAlunos) {
-        for (Aluno aluno : listaAlunos) {
-            System.out.println("Aluno: " + aluno.getNome() + " - Idade: " + aluno.getIdade());
-        }
+    public void listarAlunos() {
+        listaAlunos.forEach(System.out::println);
     }
 
+    @Override
+    public String toString() {
+        return "Turma: "+ano+ "(Curso: "+curso+")";
+    }
 }
