@@ -41,5 +41,16 @@ public class DadosProfessores {
         System.out.println();
     }
 
+    public void removerProfessor(Scanner sc, ArrayList<Professor> professores) {
+        listarProfessores(professores);
+        try {
+            System.out.print("DIGITE O NÚMERO RESPECTIVO AO PROFESSOR QUE DESEJA REMOVER: ");
+            int indice = sc.nextInt();
+            sc.nextLine();
+            professores.remove(indice);
+        } catch(IndexOutOfBoundsException e) {
+            System.out.println("ERRO: Índice inválido. Por favor, tente novamente.");
+        }
+    }
     
 }
