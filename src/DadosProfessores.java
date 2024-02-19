@@ -32,5 +32,14 @@ public class DadosProfessores {
             System.out.println("ERRO: Entrada inválida. Por favor, tente novamente.");
         }
     }
+
+    public void listarProfessores(ArrayList<Professor> professores) {
+        System.out.println();
+        for (int i = 0; i < professores.size(); i++) {
+            System.out.println(i + " - " + professores.get(i).getNome());
+        }
+        System.out.println();
+    }
+
     
 }
