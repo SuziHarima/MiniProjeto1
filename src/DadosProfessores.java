@@ -52,5 +52,22 @@ public class DadosProfessores {
             System.out.println("ERRO: Índice inválido. Por favor, tente novamente.");
         }
     }
+
+    public void buscarProfessoresID(Scanner sc, ArrayList<Professor> professores) {
+        listarProfessores(professores);
+        try {
+            System.out.print("DIGITE O NÚMERO RESPECTIVO AO PROFESSOR QUE DESEJA BUSCAR: ");
+            int indice = sc.nextInt();
+            sc.nextLine();
+            System.out.println();
+            System.out.println("PROFESSOR: " + professores.get(indice).getNome());
+            System.out.println("IDADE: " + professores.get(indice).getIdade());
+            System.out.println("SALÁRIO: " + professores.get(indice).getSalario());
+            System.out.println("CARGO: " + professores.get(indice).getCargo());
+            System.out.println("TEMPO DE CARGO: " + professores.get(indice).getTempoCargo());
+        } catch(IndexOutOfBoundsException e) {
+            System.out.println("ERRO: Índice inválido. Por favor, tente novamente.");
+        }
+    }
     
 }
