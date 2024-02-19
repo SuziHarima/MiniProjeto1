@@ -50,6 +50,8 @@ public class DadosProfessores {
             professores.remove(indice);
         } catch(IndexOutOfBoundsException e) {
             System.out.println("ERRO: Índice inválido. Por favor, tente novamente.");
+        } catch(InputMismatchException e) {
+            System.out.println("ERRO: Entrada inválida. Por favor, tente novamente.");
         }
     }
 
@@ -67,7 +69,9 @@ public class DadosProfessores {
             System.out.println("TEMPO DE CARGO: " + professores.get(indice).getTempoCargo());
         } catch(IndexOutOfBoundsException e) {
             System.out.println("ERRO: Índice inválido. Por favor, tente novamente.");
+        } catch(InputMismatchException e) {
+            System.out.println("ERRO: Entrada inválida. Por favor, tente novamente.");
         }
     }
-    
+
 }
