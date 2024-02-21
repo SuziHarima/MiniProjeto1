@@ -72,6 +72,8 @@ public class DadosProfessores {
             System.out.println("Nenhum Professor Registrado!");
             return;
         }
-        this.professores.forEach(System.out::println);
+        for (int i = 0; i < this.professores.size(); i++) {
+            System.out.println((i+1) + ". "+this.professores.get(i));
+        }
     }
 }

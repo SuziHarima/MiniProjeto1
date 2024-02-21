@@ -72,6 +72,8 @@ public class DadosAlunos {
             System.out.println("Nenhum Aluno Registrado!");
             return;
         }
-        this.alunos.forEach(System.out::println);
+        for (int i = 0; i < this.alunos.size(); i++) {
+            System.out.println((i+1) + ". "+this.alunos.get(i));
+        }
     }
 }

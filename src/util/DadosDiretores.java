@@ -74,6 +74,8 @@ public class DadosDiretores {
             System.out.println("Nenhum Diretor Registrado!");
             return;
         }
-        this.diretores.forEach(System.out::println);
+        for (int i = 0; i < this.diretores.size(); i++) {
+            System.out.println((i+1) + ". "+this.diretores.get(i));
+        }
     }
 }

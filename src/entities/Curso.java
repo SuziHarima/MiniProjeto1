@@ -3,7 +3,6 @@ package entities;
 public class Curso {
 
     private String nome;
-
     private final Professor professor;
 
     public Curso(String nome, Professor professor) {
