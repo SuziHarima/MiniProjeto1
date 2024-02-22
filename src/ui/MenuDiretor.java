@@ -1,31 +1,26 @@
 package ui;
 
-import entities.Diretor;
-import entities.Professor;
-import util.DadosAlunos;
-import util.DadosProfessores;
-import util.Utilitarios;
+import entities.*;
+import util.*;
 
 import java.util.Scanner;
 
 
 public class MenuDiretor extends Menu {
-    private static DadosProfessores professores;
-    private static DadosAlunos alunos;
 
-    public static void diretorMenu(Diretor diretorAtual, DadosProfessores dadosProfessores, DadosAlunos dadosAlunos) {
+    public static void diretorMenu(Diretor diretorAtual, DadosProfessores dadosProfessores, DadosAlunos dadosAlunos, DadosTurmas dadosTurmas,DadosCursos dadosCursos) {
         professores = dadosProfessores;
         alunos = dadosAlunos;
+
+
         diretor = diretorAtual;
         scanner = new Scanner(System.in);
         int resposta;
         do {
             System.out.println("-------------------------");
-            System.out.println("1. Listar Alunos");
-            System.out.println("2. Listar Professores");
-            System.out.println("3. Adicionar Professor");
-            System.out.println("4. Remover Professor");
-            System.out.println("5. Promover Professor");
+            System.out.println("1. Manipular Alunos");
+            System.out.println("2. Manipular Professores");
+            System.out.println("3. Manipular Turmas");
             System.out.println("9. Sair do Sistema");
             System.out.println("-------------------------");
             System.out.println("O que deseja fazer?: ");
@@ -33,19 +28,13 @@ public class MenuDiretor extends Menu {
             System.out.println("-------------------------");
             switch (resposta) {
                 case 1:
-                    alunos.listar();
+                    manipularAlunos();
                     break;
                 case 2:
-                    professores.listar();
+                    manipularProfessores();
                     break;
                 case 3:
-                    novoProfessor(professores);
-                    break;
-                case 4:
-                    removeProfessor(professores);
-                    break;
-                case 5:
-                    promoveProfessor(professores);
+                    manipularTurmas();
                     break;
                 case 9:
                     System.out.println("Logoff efetuado. Por favor, faça o login novamente.\n");
@@ -56,7 +45,180 @@ public class MenuDiretor extends Menu {
         } while (resposta != 9);
     }
 
-    private static void novoProfessor(DadosProfessores professores) {
+    private static void manipularAlunos(){
+        int resposta;
+        do {
+            System.out.println("-------------------------");
+            System.out.println("MANIPULAR ALUNOS");
+            System.out.println("1. Listar");
+            System.out.println("2. Adicionar");
+            System.out.println("3. Remover");
+            System.out.println("4. Formar");
+            System.out.println("9. Voltar");
+            System.out.println("-------------------------");
+            System.out.println("O que deseja fazer?: ");
+            resposta = Utilitarios.validateInput();
+            System.out.println("-------------------------");
+            switch (resposta) {
+                case 1:
+                    listarAlunos();
+                    break;
+                case 2:
+                    novoAluno();
+                    break;
+                case 3:
+                    removeAluno();
+                    break;
+                case 4:
+                    formarAluno();
+                    break;
+                case 9:
+                    System.out.println("Voltando...\n");
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        } while (resposta != 9);
+    }
+    private static void manipularProfessores(){
+        int resposta;
+        do {
+            System.out.println("-------------------------");
+            System.out.println("MANIPULAR PROFESSORES");
+            System.out.println("1. Listar");
+            System.out.println("2. Adicionar");
+            System.out.println("3. Remover");
+            System.out.println("4. Promover");
+            System.out.println("9. Voltar");
+            System.out.println("-------------------------");
+            System.out.println("O que deseja fazer?: ");
+            resposta = Utilitarios.validateInput();
+            System.out.println("-------------------------");
+            switch (resposta) {
+                case 1:
+                    professores.listar();
+                    break;
+                case 2:
+                    novoProfessor();
+                    break;
+                case 3:
+                    removeProfessor();
+                    break;
+                case 4:
+                    promoveProfessor();
+                    break;
+                case 9:
+                    System.out.println("Voltando...\n");
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        } while (resposta != 9);
+    }
+    private static void manipularTurmas(){
+        int resposta;
+        do {
+            System.out.println("-------------------------");
+            System.out.println("MANIPULAR TURMAS");
+            System.out.println("1. Listar");
+            System.out.println("2. Adicionar");
+            System.out.println("3. Remover");
+            System.out.println("4. Vincular Aluno");
+            System.out.println("5. Desvincular Aluno");
+            System.out.println("9. Voltar");
+            System.out.println("-------------------------");
+            System.out.println("O que deseja fazer?: ");
+            resposta = Utilitarios.validateInput();
+            System.out.println("-------------------------");
+            switch (resposta) {
+                case 1:
+                    turmas.listar();
+                    break;
+                case 2:
+                    novaTurma();
+                    break;
+                case 3:
+                    removeTurma();
+                    break;
+                case 4:
+                    vincularAluno();
+                    break;
+                case 5:
+                    desvincularAluno();
+                    break;
+                case 9:
+                    System.out.println("Voltando...\n");
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        } while (resposta != 9);
+    }
+
+    private static void novaTurma(){
+        try {
+            cursos.listar();
+            System.out.println("Selecione um Curso:");
+            int indiceCurso = Utilitarios.validateInput() - 1;
+            Curso cursoSelecionado = cursos.buscar(indiceCurso);
+            turmas.adicionar(new Turma(cursoSelecionado));
+            System.out.println("Turma adicionada com sucesso!");
+        } catch (Exception e) {
+            System.out.println("Erro ao adicionar uma turma. Verifique as informações e tente novamente!");
+        }
+    }
+    private static void removeTurma(){
+        try {
+            turmas.listar();
+            System.out.println("Informe o Id da turma a ser removida: ");
+            int idTurma = Utilitarios.validateInput() - 1;
+            turmas.remover(idTurma);
+            System.out.println("Turma removida com sucesso!");
+        } catch (Exception e) {
+            System.out.println("Erro ao remover uma turma. Verifique as informações e tente novamente!");
+        }
+    }
+    private static void listarAlunos(){
+        try{
+            System.out.println("Deseja filtrar por turma? (S) Sim ou (N) Não");
+            String resposta = scanner.nextLine().toUpperCase();
+            if(resposta.equals("N")) {
+                alunos.listar();
+                return;
+            }
+            turmas.listar();
+            System.out.println("Informe o Id da turma: ");
+            int idTurma = Utilitarios.validateInput() - 1;
+            Turma turma = turmas.buscar(idTurma);
+            turma.listarAlunos();
+        }catch(Exception e){
+            System.out.println("Erro ao listar Alunos. Verifique as informações e tente novamente!");
+        }
+    }
+    private static void novoAluno(){
+        try {
+            Aluno novoAluno = new Aluno(Utilitarios.inputNome(),Utilitarios.inputIdade());
+            alunos.adicionar(novoAluno);
+            System.out.println("Aluno adicionado com sucesso!");
+        } catch (Exception e) {
+            System.out.println("Erro ao adicionar um aluno. Verifique as informações e tente novamente!");
+        }
+    }
+    private static void removeAluno(){
+        try {
+            alunos.listar();
+            System.out.println("Informe o Id do aluno a ser removido: ");
+            int idAluno = Utilitarios.validateInput() - 1;
+            alunos.remover(idAluno);
+            System.out.println("Aluno removido com sucesso!");
+        } catch (Exception e) {
+            System.out.println("Erro ao remover um aluno. Verifique as informações e tente novamente!");
+        }
+    }
+
+
+
+    private static void novoProfessor() {
         try {
             Professor novoProfessor = new Professor(Utilitarios.inputNome(), Utilitarios.inputIdade());
             professores.adicionar(novoProfessor);
@@ -65,18 +227,19 @@ public class MenuDiretor extends Menu {
             System.out.println("Erro ao adicionar um professor. Verifique as informações e tente novamente!");
         }
     }
-    private static void removeProfessor(DadosProfessores professores){
+    private static void removeProfessor(){
         try {
             professores.listar();
             System.out.println("Informe o Id do professor a ser removido: ");
-            int idProfessor = Utilitarios.validateInput();
+            int idProfessor = Utilitarios.validateInput() - 1;
             professores.remover(idProfessor);
             System.out.println("Professor removido com sucesso!");
         } catch (Exception e) {
             System.out.println("Erro ao remover um professor. Verifique as informações e tente novamente!");
         }
     }
-    private static void promoveProfessor(DadosProfessores professores){
+
+    private static void promoveProfessor(){
         try {
             professores.listar();
             System.out.println("Informe o Id do professor a ser promovido: ");
@@ -86,6 +249,49 @@ public class MenuDiretor extends Menu {
             System.out.println("Professor promovido com sucesso!");
         } catch (Exception e) {
             System.out.println("Erro ao remover um professor. Verifique as informações e tente novamente!");
+        }
+    }
+    private static void formarAluno(){
+        try{
+            alunos.listar();
+            System.out.println("Informe o Id do aluno a ser formado: ");
+            int idAluno = Utilitarios.validateInput();
+            Aluno aluno = alunos.buscar(idAluno);
+            aluno.formarAluno();
+            System.out.println("Aluno Formado com sucesso!");
+        }catch (Exception e){
+            System.out.println("Erro ao formar um Aluno. Verifique as informações e tente novamente!");
+        }
+    }
+    private static void vincularAluno(){
+        try{
+            turmas.listar();
+            System.out.println("Informe a Turma que deseja manipular: ");
+            int idTurma = Utilitarios.validateInput() - 1;
+            Turma turma = turmas.buscar(idTurma);
+            alunos.listar();
+            System.out.println("Informe o Id do aluno a ser vinculado nesta Turma: ");
+            int idAluno = Utilitarios.validateInput() - 1;
+            Aluno aluno = alunos.buscar(idAluno);
+            turma.adicionarAluno(aluno);
+            System.out.println("Aluno vinculado à Turma com sucesso!");
+        }catch (Exception e){
+            System.out.println("Erro ao formar um Aluno. Verifique as informações e tente novamente!");
+        }
+    }
+    private static void desvincularAluno(){
+        try{
+            turmas.listar();
+            System.out.println("Informe a Turma que deseja manipular: ");
+            int idTurma = Utilitarios.validateInput() - 1;
+            Turma turma = turmas.buscar(idTurma);
+            turma.listarAlunos();
+            System.out.println("Informe o Id do aluno a ser desvinculado desta Turma: ");
+            int idAluno = Utilitarios.validateInput() - 1;
+            turma.removerAluno(idAluno);
+            System.out.println("Aluno desvinculado Turma com sucesso!");
+        }catch (Exception e){
+            System.out.println("Erro ao desvincular um Aluno de Turma. Verifique as informações e tente novamente!");
         }
     }
 }

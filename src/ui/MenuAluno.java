@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class MenuAluno extends Menu {
 
     public static void alunoMenu(Aluno alunoAtual, DadosCursos dadosCursos) {
+        cursos = dadosCursos;
         aluno = alunoAtual;
-        cursos = dadosCursos.getLista();
         scanner = new Scanner(System.in);
         int resposta;
         do {
@@ -20,7 +20,7 @@ public class MenuAluno extends Menu {
             System.out.println("1. Listar Cursos");
             System.out.println("2. Adicionar Curso");
             System.out.println("3. Remover Curso");
-            System.out.println("4. Alterar Status Curso");
+            System.out.println("4. "+(aluno.isAtivo() ? "Trancar":"Ativar")+" Curso");
             System.out.println("9. Sair do Sistema");
             System.out.println("-------------------------");
             System.out.println("O que deseja fazer?: ");
@@ -51,12 +51,12 @@ public class MenuAluno extends Menu {
 
     private static Curso novoCurso() {
         System.out.println("Os cursos disponíveis são estes.");
-        for (int i = 0; i < cursos.size(); i++) {
-            System.out.println((i + 1) + " - " + cursos.get(i).getNome());
+        for (int i = 0; i < cursos.getLista().size(); i++) {
+            System.out.println((i + 1) + " - " + cursos.getLista().get(i).getNome());
         }
         System.out.println("Selecione o Curso:");
         scanner = new Scanner(System.in);
-        return cursos.get(Utilitarios.validateInput() - 1);
+        return cursos.getLista().get(Utilitarios.validateInput() - 1);
     }
 
     private static void matricular() {

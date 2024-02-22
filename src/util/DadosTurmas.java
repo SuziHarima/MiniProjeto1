@@ -67,13 +67,27 @@ public class DadosTurmas {
      * Listar turmas
      */
     public void listar() {
-        System.out.println("Turmas registrados: ");
+        System.out.println("Turmas registradas: ");
         if(this.turmas.isEmpty()) {
             System.out.println("Nenhum Turma Registrado!");
             return;
         }
         for (int i = 0; i < this.turmas.size(); i++) {
             System.out.println((i+1) + ". "+this.turmas.get(i));
+        }
+    }
+    public List<Turma> getListaByProf(String nomeProfessor) {
+        return this.turmas.stream().filter(t -> t.getCurso().getProfessor().getNome().equalsIgnoreCase(nomeProfessor)).toList();
+    }
+    public void listarByProf(String nomeProfessor) {
+        List<Turma> turmasProfessor = getListaByProf(nomeProfessor);
+        System.out.println("Turmas registradas: ");
+        if(turmasProfessor.isEmpty()) {
+            System.out.println("Nenhum Turma Registrado!");
+            return;
+        }
+        for (int i = 0; i < turmasProfessor.size(); i++) {
+            System.out.println((i+1) + ". "+turmasProfessor.get(i));
         }
     }
 }

@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Turma{
-    private ArrayList<Aluno> listaAlunos;
+    private final ArrayList<Aluno> listaAlunos;
     private int ano;
     private Curso curso;
 
@@ -45,7 +45,10 @@ public class Turma{
     }
 
     public void listarAlunos() {
-        listaAlunos.forEach(System.out::println);
+        System.out.println("Alunos da Turma - Ano "+ano+" - Curso "+curso.getNome());
+        for (int i = 0; i < listaAlunos.size(); i++) {
+            System.out.println((i+1)+ ". "+listaAlunos.get(i).getNome());
+        }
     }
 
     @Override

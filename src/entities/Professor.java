@@ -1,4 +1,7 @@
 package entities;
+
+import java.util.List;
+
 public class Professor extends Funcionario {
     private int tempoTrabalho = 0;
 

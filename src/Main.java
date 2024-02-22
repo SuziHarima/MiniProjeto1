@@ -19,15 +19,8 @@ public class Main {
         initDB();
 
         System.out.println("Bem Vindo ao SchoolManager!");
-
         login();
-
-
-
-//        if(diretor != null)
-//        System.out.println("Diretor Encontrado: "+diretor.getNome());
-//
-//
+        System.out.println("Sistema finalizado. Até Mais");
     }
 
     private static void login(){
@@ -40,9 +33,9 @@ public class Main {
         if (aluno != null)
             MenuAluno.alunoMenu(aluno, dadosCursos);
         if (diretor != null)
-            MenuDiretor.diretorMenu(diretor,dadosProfessores,dadosAlunos);
+            MenuDiretor.diretorMenu(diretor,dadosProfessores,dadosAlunos,dadosTurmas,dadosCursos);
         if (professor != null)
-            MenuProfessor.professorMenu(professor,dadosTurmas);
+            MenuProfessor.professorMenu(professor,dadosAlunos,dadosTurmas);
 
         login();
     }

@@ -1,9 +1,6 @@
 package ui;
 
-import entities.Aluno;
-import entities.Curso;
-import entities.Diretor;
-import entities.Professor;
+import entities.*;
 import util.DadosAlunos;
 import util.DadosCursos;
 import util.DadosProfessores;
@@ -14,10 +11,14 @@ import java.util.Scanner;
 
 
 public class Menu {
+    static DadosTurmas turmas;
+    static DadosCursos cursos;
+    static DadosAlunos alunos;
+    static DadosProfessores professores;
     static Aluno aluno;
     static Professor professor;
     static Diretor diretor;
-    static List<Curso> cursos;
+    static Turma turma;
     static Scanner scanner;
 
     /*
