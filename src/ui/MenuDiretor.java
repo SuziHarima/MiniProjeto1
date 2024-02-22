@@ -11,6 +11,8 @@ public class MenuDiretor extends Menu {
     public static void diretorMenu(Diretor diretorAtual, DadosProfessores dadosProfessores, DadosAlunos dadosAlunos, DadosTurmas dadosTurmas,DadosCursos dadosCursos) {
         professores = dadosProfessores;
         alunos = dadosAlunos;
+        turmas = dadosTurmas;
+        cursos = dadosCursos;
 
 
         diretor = diretorAtual;

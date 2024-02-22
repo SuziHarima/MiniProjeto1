@@ -20,7 +20,6 @@ public class Main {
 
         System.out.println("Bem Vindo ao SchoolManager!");
         login();
-        System.out.println("Sistema finalizado. Até Mais");
     }
 
     private static void login(){
