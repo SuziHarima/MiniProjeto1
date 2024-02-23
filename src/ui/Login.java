@@ -70,7 +70,7 @@ public class Login {
                     System.out.println("\nBem Vindo " + aluno.getNome() + "!");
                     break;
                 }
-                aluno = new Aluno(Utilitarios.inputNome(), Utilitarios.inputIdade());
+                aluno = new Aluno(nome, Utilitarios.inputIdade());
                 alunos.adicionar(aluno);
                 System.out.println("Aluno criado com sucesso!");
                 break;

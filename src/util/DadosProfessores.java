@@ -23,7 +23,14 @@ public class DadosProfessores {
      * @param professor objeto Professor a ser incluído à lista
      */
     public void adicionar(Professor professor){
-        this.professores.add(professor);
+        try{
+            if(this.professores.stream().anyMatch(a -> a.getNome().equalsIgnoreCase(professor.getNome())))
+                throw new Exception("Professor já existe!");
+
+            this.professores.add(professor);
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -67,11 +74,11 @@ public class DadosProfessores {
      * Listar Professores
      */
     public void listar(){
-        System.out.println("Professores registrados: ");
         if(this.professores.isEmpty()) {
             System.out.println("Nenhum Professor Registrado!");
             return;
         }
+        System.out.println("Professores registrados: ");
         for (int i = 0; i < this.professores.size(); i++) {
             System.out.println((i+1) + ". "+this.professores.get(i));
         }

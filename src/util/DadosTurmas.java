@@ -20,7 +20,14 @@ public class DadosTurmas {
      * @param turma objeto turma a ser incluído à lista
      */
     public void adicionar(Turma turma) {
-        this.turmas.add(turma);
+        try{
+            if(this.turmas.stream().anyMatch(a -> a.getNome().equalsIgnoreCase(turma.getNome())))
+                throw new Exception("Turma já existe!");
+
+            this.turmas.add(turma);
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -67,11 +74,11 @@ public class DadosTurmas {
      * Listar turmas
      */
     public void listar() {
-        System.out.println("Turmas registradas: ");
         if(this.turmas.isEmpty()) {
-            System.out.println("Nenhum Turma Registrado!");
+            System.out.println("Nenhuma Turma Registrada!");
             return;
         }
+        System.out.println("Turmas registradas: ");
         for (int i = 0; i < this.turmas.size(); i++) {
             System.out.println((i+1) + ". "+this.turmas.get(i));
         }

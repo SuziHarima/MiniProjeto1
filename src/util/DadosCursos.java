@@ -20,7 +20,14 @@ public class DadosCursos {
      * @param curso objeto curso a ser incluído à lista
      */
     public void adicionar(Curso curso) {
-        this.cursos.add(curso);
+        try{
+            if(this.cursos.stream().anyMatch(a -> a.getNome().equalsIgnoreCase(curso.getNome())))
+                throw new Exception("Curso já existe!");
+
+            this.cursos.add(curso);
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -67,11 +74,11 @@ public class DadosCursos {
      * Listar cursos
      */
     public void listar() {
-        System.out.println("Cursos registrados: ");
         if(this.cursos.isEmpty()) {
             System.out.println("Nenhum Curso Registrado!");
             return;
         }
+        System.out.println("Cursos registrados: ");
         for (int i = 0; i < this.cursos.size(); i++) {
             System.out.println((i+1) + ". "+this.cursos.get(i));
         }

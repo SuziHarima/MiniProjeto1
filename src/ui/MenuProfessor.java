@@ -56,10 +56,15 @@ public class MenuProfessor extends Menu{
     private static void adicionarAluno(){
         try{
             turmas.listarByProf(professor.getNome());
+            if(turmas.getListaByProf(professor.getNome()).isEmpty())
+                return;
+
             System.out.println("Informe a Turma que deseja manipular: ");
             int idTurma = Utilitarios.validateInput() - 1;
             Turma turma = turmas.getListaByProf(professor.getNome()).get(idTurma);
             alunos.listar();
+            if(alunos.getLista().isEmpty())
+                return;
             System.out.println("Informe o Id do aluno a ser adicionado nesta Turma: ");
             int idAluno = Utilitarios.validateInput() - 1;
             Aluno aluno = alunos.buscar(idAluno);
@@ -72,10 +77,14 @@ public class MenuProfessor extends Menu{
     private static void removerAluno(){
         try{
             turmas.listarByProf(professor.getNome());
+            if(turmas.getListaByProf(professor.getNome()).isEmpty())
+                return;
             System.out.println("Informe a Turma que deseja manipular: ");
             int idTurma = Utilitarios.validateInput() - 1;
             Turma turmaAtual = turmas.getListaByProf(professor.getNome()).get(idTurma);
             turmaAtual.listarAlunos();
+            if(turmaAtual.getListaAlunos().isEmpty())
+                return;
             System.out.println("Informe o Id do aluno a ser removido desta Turma: ");
             int idAluno = Utilitarios.validateInput() - 1;
             turmaAtual.removerAluno(idAluno);
@@ -87,6 +96,8 @@ public class MenuProfessor extends Menu{
     private static void listarAlunos(){
         try{
             turmas.listarByProf(professor.getNome());
+            if(turmas.getListaByProf(professor.getNome()).isEmpty())
+                return;
             System.out.println("Informe o Id da turma: ");
             int idTurma = Utilitarios.validateInput() - 1;
             Turma turmaAtual = turmas.getListaByProf(professor.getNome()).get(idTurma);
@@ -98,10 +109,14 @@ public class MenuProfessor extends Menu{
     private static void formarAluno(){
         try{
             turmas.listarByProf(professor.getNome());
+            if(turmas.getListaByProf(professor.getNome()).isEmpty())
+                return;
             System.out.println("Informe o Id da turma: ");
             int idTurma = Utilitarios.validateInput() - 1;
             Turma turmaAtual = turmas.getListaByProf(professor.getNome()).get(idTurma);
             turmaAtual.listarAlunos();
+            if(turmaAtual.getListaAlunos().isEmpty())
+                return;
             System.out.println("Informe o Id do aluno a ser formado: ");
             int idAluno = Utilitarios.validateInput();
             Aluno aluno = alunos.buscar(idAluno);

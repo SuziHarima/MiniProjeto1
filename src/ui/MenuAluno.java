@@ -13,6 +13,7 @@ public class MenuAluno extends Menu {
     public static void alunoMenu(Aluno alunoAtual, DadosCursos dadosCursos) {
         cursos = dadosCursos;
         aluno = alunoAtual;
+        selecionaTurma();
         scanner = new Scanner(System.in);
         int resposta;
         do {
@@ -28,7 +29,6 @@ public class MenuAluno extends Menu {
             System.out.println("-------------------------");
             switch (resposta) {
                 case 1:
-                    System.out.println("Cursos Matriculados: ");
                     aluno.listarCursos();
                     break;
                 case 2:
@@ -49,7 +49,23 @@ public class MenuAluno extends Menu {
         } while (resposta != 9);
     }
 
+    private static void selecionaTurma(){
+        aluno.listarCursos();
+        if(aluno.getListaCursos().isEmpty()){
+            return;
+        }
+        System.out.println("-------------------------");
+        System.out.println("Selecione uma turma:");
+        int idTurma = Utilitarios.validateInput() - 1;
+        turma = turmas.buscar(idTurma);
+        System.out.println("-------------------------");
+    }
+
     private static Curso novoCurso() {
+        if(cursos.getLista().isEmpty()){
+            System.out.println("Nenhum Curso disponível");
+            return null;
+        }
         System.out.println("Os cursos disponíveis são estes.");
         for (int i = 0; i < cursos.getLista().size(); i++) {
             System.out.println((i + 1) + " - " + cursos.getLista().get(i).getNome());
@@ -69,6 +85,10 @@ public class MenuAluno extends Menu {
     }
 
     private static Curso cursoExistente() {
+        if(aluno.getListaCursos().isEmpty()){
+            System.out.println("Não registrado em nenhum Curso!");
+            return null;
+        }
         aluno.listarCursos();
         System.out.println("Selecione o Curso:");
         scanner = new Scanner(System.in);

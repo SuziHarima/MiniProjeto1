@@ -21,7 +21,14 @@ public class DadosDiretores {
      * @param diretor objeto diretor a ser incluído à lista
      */
     public void adicionar(Diretor diretor) {
-        this.diretores.add(diretor);
+        try{
+            if(this.diretores.stream().anyMatch(a -> a.getNome().equalsIgnoreCase(diretor.getNome())))
+                throw new Exception("Diretor já existe!");
+
+            this.diretores.add(diretor);
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -69,11 +76,11 @@ public class DadosDiretores {
      * Listar diretores
      */
     public void listar() {
-        System.out.println("Diretores registrados: ");
         if (this.diretores.isEmpty()) {
             System.out.println("Nenhum Diretor Registrado!");
             return;
         }
+        System.out.println("Diretores registrados: ");
         for (int i = 0; i < this.diretores.size(); i++) {
             System.out.println((i+1) + ". "+this.diretores.get(i));
         }

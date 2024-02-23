@@ -43,6 +43,11 @@ public class Aluno {
     }
 
     public void listarCursos() {
+        if(listaCursos.isEmpty()){
+            System.out.println("Nenhum curso matriculado!");
+            return;
+        }
+
         System.out.println("Cursos Matriculados: ");
         for (int i = 0; i < listaCursos.size(); i++) {
             System.out.println((i + 1) + " - " + listaCursos.get(i));

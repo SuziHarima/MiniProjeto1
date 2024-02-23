@@ -20,7 +20,14 @@ public class DadosAlunos {
      * @param aluno objeto aluno a ser incluído à lista
      */
     public void adicionar(Aluno aluno) {
-        this.alunos.add(aluno);
+        try{
+            if(this.alunos.stream().anyMatch(a -> a.getNome().equalsIgnoreCase(aluno.getNome())))
+                throw new Exception("Aluno já existe!");
+
+            this.alunos.add(aluno);
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -67,11 +74,11 @@ public class DadosAlunos {
      * Listar alunos
      */
     public void listar() {
-        System.out.println("Alunos registrados: ");
         if(this.alunos.isEmpty()) {
             System.out.println("Nenhum Aluno Registrado!");
             return;
         }
+        System.out.println("Alunos registrados: ");
         for (int i = 0; i < this.alunos.size(); i++) {
             System.out.println((i+1) + ". "+this.alunos.get(i));
         }

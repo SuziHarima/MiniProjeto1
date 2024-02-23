@@ -89,8 +89,8 @@ public class DadosGerais {
         if(dadosCursos.getLista().isEmpty())
             return ;
         dadosTurmas = new DadosTurmas();
-        dadosTurmas.adicionar(new Turma(dadosCursos.buscar(0)));
-        dadosTurmas.adicionar(new Turma(dadosCursos.buscar(1)));
-        dadosTurmas.adicionar(new Turma(dadosCursos.buscar(2)));
+        dadosTurmas.adicionar(new Turma("Turma 101",dadosCursos.buscar(0)));
+        dadosTurmas.adicionar(new Turma("Turma 201",dadosCursos.buscar(1)));
+        dadosTurmas.adicionar(new Turma("Turma 301",dadosCursos.buscar(2)));
     }
 }

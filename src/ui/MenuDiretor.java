@@ -160,24 +160,28 @@ public class MenuDiretor extends Menu {
     private static void novaTurma(){
         try {
             cursos.listar();
+            if(cursos.getLista().isEmpty())
+                return;
             System.out.println("Selecione um Curso:");
             int indiceCurso = Utilitarios.validateInput() - 1;
             Curso cursoSelecionado = cursos.buscar(indiceCurso);
-            turmas.adicionar(new Turma(cursoSelecionado));
+            turmas.adicionar(new Turma(Utilitarios.inputNome(), cursoSelecionado));
             System.out.println("Turma adicionada com sucesso!");
         } catch (Exception e) {
-            System.out.println("Erro ao adicionar uma turma. Verifique as informações e tente novamente!");
+            System.out.println(e.getMessage());
         }
     }
     private static void removeTurma(){
         try {
             turmas.listar();
+            if(turmas.getLista().isEmpty())
+                return;
             System.out.println("Informe o Id da turma a ser removida: ");
             int idTurma = Utilitarios.validateInput() - 1;
             turmas.remover(idTurma);
             System.out.println("Turma removida com sucesso!");
         } catch (Exception e) {
-            System.out.println("Erro ao remover uma turma. Verifique as informações e tente novamente!");
+            System.out.println(e.getMessage());
         }
     }
     private static void listarAlunos(){
@@ -189,6 +193,8 @@ public class MenuDiretor extends Menu {
                 return;
             }
             turmas.listar();
+            if(turmas.getLista().isEmpty())
+                return;
             System.out.println("Informe o Id da turma: ");
             int idTurma = Utilitarios.validateInput() - 1;
             Turma turma = turmas.buscar(idTurma);
@@ -203,12 +209,14 @@ public class MenuDiretor extends Menu {
             alunos.adicionar(novoAluno);
             System.out.println("Aluno adicionado com sucesso!");
         } catch (Exception e) {
-            System.out.println("Erro ao adicionar um aluno. Verifique as informações e tente novamente!");
+            System.out.println(e.getMessage());
         }
     }
     private static void removeAluno(){
         try {
             alunos.listar();
+            if(alunos.getLista().isEmpty())
+                return;
             System.out.println("Informe o Id do aluno a ser removido: ");
             int idAluno = Utilitarios.validateInput() - 1;
             alunos.remover(idAluno);
@@ -226,12 +234,14 @@ public class MenuDiretor extends Menu {
             professores.adicionar(novoProfessor);
             System.out.println("Professor adicionado com sucesso!");
         } catch (Exception e) {
-            System.out.println("Erro ao adicionar um professor. Verifique as informações e tente novamente!");
+            System.out.println(e.getMessage());
         }
     }
     private static void removeProfessor(){
         try {
             professores.listar();
+            if(professores.getLista().isEmpty())
+                return;
             System.out.println("Informe o Id do professor a ser removido: ");
             int idProfessor = Utilitarios.validateInput() - 1;
             professores.remover(idProfessor);
@@ -244,6 +254,8 @@ public class MenuDiretor extends Menu {
     private static void promoveProfessor(){
         try {
             professores.listar();
+            if(professores.getLista().isEmpty())
+                return;
             System.out.println("Informe o Id do professor a ser promovido: ");
             int idProfessor = Utilitarios.validateInput();
             Professor professor = professores.buscar(idProfessor);
@@ -256,6 +268,8 @@ public class MenuDiretor extends Menu {
     private static void formarAluno(){
         try{
             alunos.listar();
+            if(alunos.getLista().isEmpty())
+                return;
             System.out.println("Informe o Id do aluno a ser formado: ");
             int idAluno = Utilitarios.validateInput();
             Aluno aluno = alunos.buscar(idAluno);
@@ -268,10 +282,14 @@ public class MenuDiretor extends Menu {
     private static void vincularAluno(){
         try{
             turmas.listar();
+            if(turmas.getLista().isEmpty())
+                return;
             System.out.println("Informe a Turma que deseja manipular: ");
             int idTurma = Utilitarios.validateInput() - 1;
             Turma turma = turmas.buscar(idTurma);
             alunos.listar();
+            if(alunos.getLista().isEmpty())
+                return;
             System.out.println("Informe o Id do aluno a ser vinculado nesta Turma: ");
             int idAluno = Utilitarios.validateInput() - 1;
             Aluno aluno = alunos.buscar(idAluno);
@@ -284,10 +302,14 @@ public class MenuDiretor extends Menu {
     private static void desvincularAluno(){
         try{
             turmas.listar();
+            if(turmas.getLista().isEmpty())
+                return;
             System.out.println("Informe a Turma que deseja manipular: ");
             int idTurma = Utilitarios.validateInput() - 1;
             Turma turma = turmas.buscar(idTurma);
             turma.listarAlunos();
+            if(turma.getListaAlunos().isEmpty())
+                return;
             System.out.println("Informe o Id do aluno a ser desvinculado desta Turma: ");
             int idAluno = Utilitarios.validateInput() - 1;
             turma.removerAluno(idAluno);
