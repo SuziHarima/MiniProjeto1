@@ -1,13 +1,9 @@
 import database.DadosGerais;
 import entities.Aluno;
-import entities.Curso;
 import entities.Diretor;
 import entities.Professor;
-import enums.Cargo;
 import ui.*;
 import util.*;
-
-import java.util.List;
 
 public class Main {
     private static DadosAlunos dadosAlunos;
