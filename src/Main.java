@@ -13,5 +13,9 @@ public class Main {
 
         ArrayList<Curso> listaCursos = new ArrayList<Curso>();
 
+        Diretor novoDiretor = new Diretor("Joselito", 2);
+
+        System.out.println(novoDiretor);
+
     }
 }
