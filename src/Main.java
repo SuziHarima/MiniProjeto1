@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,6 +10,8 @@ public class Main {
         System.out.println(novoProfessor);
 
         sc.close();
+
+        ArrayList<Curso> listaCursos = new ArrayList<Curso>();
 
     }
 }
