@@ -8,6 +8,7 @@ import util.DadosDiretores;
 import util.DadosProfessores;
 import util.Utilitarios;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Login {
@@ -40,7 +41,7 @@ public class Login {
         scanner = new Scanner(System.in);
         String resposta = identificar();
         String nome = "";
-        if (!resposta.equalsIgnoreCase("E"))
+        if (!resposta.equalsIgnoreCase("E") && Arrays.asList(new String[] {"P","D","A"}).contains(resposta.toUpperCase()))
             nome = Utilitarios.inputNome();
 
         switch (resposta) {
@@ -93,7 +94,7 @@ public class Login {
         System.out.println("Você é Funcionário ou Aluno?");
         System.out.println("Digite 'F' para Funcionário ou 'A' para Aluno ('E' para encerrar o programa):");
         String resposta = scanner.nextLine().toUpperCase();
-        if (resposta.equals("F"))
+        if (resposta.equalsIgnoreCase("F"))
             resposta = identificarFuncionario();
         return resposta;
     }
@@ -107,6 +108,15 @@ public class Login {
         System.out.println("Você é Professor ou Diretor?");
         System.out.println("Digite 'P' para Professor, 'D' para Diretor ('E' para encerrar o programa):");
         return scanner.nextLine().toUpperCase();
+    }
+
+    /**
+     * Resetar dados de login
+     */
+    public static void clearData(){
+        aluno = null;
+        professor = null;
+        diretor = null;
     }
 
 

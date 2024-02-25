@@ -18,13 +18,20 @@ public class Main {
         login();
     }
 
+    /**
+     * Efetua Login e demonstra o menu conforme o nível de permissão
+     */
     private static void login(){
         boolean login = Login.logar(dadosAlunos,dadosProfessores,dadosDiretores);
         if (!login) return;
 
+
         Aluno aluno = Login.getAluno();
         Diretor diretor = Login.getDiretor();
         Professor professor = Login.getProfessor();
+        System.out.println(aluno);
+        System.out.println(diretor);
+        System.out.println(professor);
         if (aluno != null)
             MenuAluno.alunoMenu(aluno, dadosCursos);
         if (diretor != null)
@@ -32,9 +39,13 @@ public class Main {
         if (professor != null)
             MenuProfessor.professorMenu(professor,dadosAlunos,dadosTurmas);
 
+        Login.clearData();
         login();
     }
 
+    /**
+     * Inicia dados pré-existentes
+     */
     private static void initDB(){
         DadosGerais dados = new DadosGerais();
         dadosAlunos = dados.getDadosAlunos();
