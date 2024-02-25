@@ -1,5 +1,7 @@
 package entities;
 
+import entities.Funcionario;
+
 public class Diretor extends Funcionario {
     private int tempoCargo;
 
